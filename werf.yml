@@ -1,0 +1,9 @@
+project: sandlabs-website
+configVersion: 1
+---
+image: frontend
+dockerfile: Dockerfile
+args: {
+    REACT_APP_SENTRY_DSN: 'https://932dbd50be6741d1bb6a2418494bcfe8@o301883.ingest.sentry.io/6275011',
+    REACT_APP_ENVIRONMENT: {{ .Env | quote }},
+}
