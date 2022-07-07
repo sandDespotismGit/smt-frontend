@@ -11,12 +11,12 @@ import {
   Textarea,
   useMediaQuery,
 } from '@chakra-ui/react';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { GiRobotGrab } from 'react-icons/gi';
 import { FaRegHandPaper } from 'react-icons/fa';
-import { BsFillTelephoneFill } from 'react-icons/bs';
+import { BsFillTelephoneFill, BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 // import { Formik } from 'formik';
 
 import { Header } from '../../components/header/Header';
@@ -40,11 +40,17 @@ import chip2 from '../../assets/chip2.webp';
 import chip3 from '../../assets/chip3.webp';
 
 export const Main = React.memo(() => {
+  const cards = [chip1, chip2, chip3];
+  const [centralCard, setCard] = useState(1);
+  const [LCard, setLCard] = useState(0);
+  const [RCard, setRCard] = useState(2);
   const { height } = useWindowDimensions();
   const { width } = useWindowDimensions();
   const [IsLargerThan320] = useMediaQuery('(min-width: 321px)');
   const [IsLargerThan1024] = useMediaQuery('(min-width: 1025px)');
   const [IsLargerThan768] = useMediaQuery('(min-width: 769px)');
+  const [IsLargerThan620] = useMediaQuery('(min-width: 620px)');
+  const [IsLargerThan420] = useMediaQuery('(min-width: 420px)');
   const FormValidation = Yup.object().shape({
     email: Yup.string().email('iinvalid email adress').required('required'),
     name: Yup.string().min(2, 'must be at least 2 characters').required('required'),
@@ -59,41 +65,48 @@ export const Main = React.memo(() => {
   return (
     <Stack direction="column" bg="brand.grayvar2" spacing="0" marginBottom="0px">
       <Header />
-      <Stack direction={IsLargerThan320 ? 'row' : 'column'} marginTop="0px" align="flex-start">
+      <Stack direction={IsLargerThan620 ? 'row' : 'column'} marginTop="0px" justify="space-between" align="flex-start">
         <VStack
           paddingX={['10px', '20px', '40px', '60px', '100px']}
           paddingY={['40px', '50px', '60px', '70px', '80px']}
           align={IsLargerThan320 ? 'left' : 'space-around'}
           justify="center"
-          spacing={['0px', '2px', '4px', '8px', '10px']}
+          zIndex={2}
+          spacing={IsLargerThan1024 ? '25px' : '15px'}
         >
           <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
             БЫСТРО И КАЧЕСТВЕННО
           </Text>
-          <Text fontSize={['34px', '38px', '42px', '46px', '50px']} fontWeight="700" color="brand.black">
-            Автоматический монтаж{' '}
-            <Text fontSize={['34px', '38px', '42px', '46px', '50px']} fontWeight="700" color="brand.blue">
-              печатных плат
+          <HStack>
+            <Text fontSize={['24px', '28px', '32px', '46px', '50px']} fontWeight="700" color="brand.black">
+              Автоматический монтаж{' '}
+              <Text fontSize={['24px', '28px', '32px', '46px', '50px']} fontWeight="700" color="brand.blue">
+                печатных плат
+              </Text>
             </Text>
-          </Text>
-          <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
-            Собственное производство.
-          </Text>
-          <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
-            Линии автоматического монтажа.
-          </Text>
-          <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
-            Доставим готовые изделия в любую точку России.
-          </Text>
-          <Button variant="brand-blue" maxH="57px" maxW="260px">
-            Заказать монтаж
-          </Button>
+          </HStack>
+          <VStack align={IsLargerThan320 ? 'left' : 'space-around'} spacing={IsLargerThan1024 ? '35px' : '20px'}>
+            <VStack align={IsLargerThan320 ? 'left' : 'space-around'} spacing={0}>
+              <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
+                Собственное производство.
+              </Text>
+              <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
+                Линии автоматического монтажа.
+              </Text>
+              <Text fontSize={['16px', '18px', '20px', '22px', '24px']} fontWeight="400" color="brand.gray">
+                Доставим готовые изделия в любую точку России.
+              </Text>
+            </VStack>
+            <Button variant="brand-blue" maxH="57px" maxW="260px" paddingX="40px" paddingY="15px" fontWeight="400">
+              Заказать монтаж
+            </Button>
+          </VStack>
         </VStack>
-        <HStack>
+        <HStack margin="0" padding="0">
           <Image src={microchip} loading="lazy" zIndex={2} />
         </HStack>
         {IsLargerThan1024 ? (
-          <Image src={vectorbgsmall} pos="absolute" zIndex={1} top={height / 2} left={width / 2 - 130} loading="lazy" />
+          <Image src={vectorbgsmall} pos="absolute" zIndex={1} top={height / 3} left={width / 2 - 70} loading="lazy" />
         ) : (
           <HStack></HStack>
         )}
@@ -121,11 +134,11 @@ export const Main = React.memo(() => {
             paddingX={['20px', '30px', '40px', '50px', '60px']}
             marginTop="60px"
             paddingY="30px"
-            align={IsLargerThan320 ? 'left' : 'center'}
+            align={IsLargerThan620 ? 'left' : 'center'}
             spacing={['20px', '30px', '40px', '50px', '60px']}
             justify="center"
             zIndex={2}
-            direction={IsLargerThan320 ? 'row' : 'column'}
+            direction={IsLargerThan620 ? 'row' : 'column'}
           >
             <VStack align="center" justify="center" spacing="25px" maxW={(width / 3) * 2}>
               <HStack
@@ -146,7 +159,7 @@ export const Main = React.memo(() => {
                 может быть выполнен с обеих сторон печатной платы
               </Text>
             </VStack>
-            {IsLargerThan320 ? (
+            {IsLargerThan620 ? (
               <VStack
                 layerStyle="brand-gradient-blue"
                 bottom="60px"
@@ -206,9 +219,10 @@ export const Main = React.memo(() => {
         w="full"
         layerStyle="brand-gradient-dark-blue"
         align="center"
-        spacing="50px"
-        paddingY="20px"
+        spacing={IsLargerThan320 ? '50px' : '10px'}
+        paddingY={IsLargerThan320 ? '20px' : '10px'}
         justify="flex-start"
+        paddingBottom="35px"
         zIndex={2}
       >
         <HStack align="center" justify="center">
@@ -228,8 +242,8 @@ export const Main = React.memo(() => {
                   justify="center"
                   backgroundColor="brand.black"
                   borderRadius="full"
-                  w={['165px', '170px', '180px', '190px', '200px']}
-                  h={['165px', '170px', '180px', '190px', '200px']}
+                  w={['165px', '170px', '180px', '180px', '200px']}
+                  h={['165px', '170px', '180px', '180px', '200px']}
                 >
                   <Image src={microchipclean} borderRadius="full" w="160px" h="160px" loading="lazy" />
                 </HStack>
@@ -243,8 +257,8 @@ export const Main = React.memo(() => {
                   justify="center"
                   backgroundColor="brand.black"
                   borderRadius="full"
-                  w={['165px', '170px', '180px', '190px', '200px']}
-                  h={['165px', '170px', '180px', '190px', '200px']}
+                  w={['165px', '170px', '180px', '180px', '200px']}
+                  h={['165px', '170px', '180px', '180px', '200px']}
                 >
                   <Image src={microchipinside} borderRadius="full" w="160px" h="160px" loading="lazy" />
                 </HStack>
@@ -258,8 +272,8 @@ export const Main = React.memo(() => {
                   justify="center"
                   backgroundColor="brand.black"
                   borderRadius="full"
-                  w={['165px', '170px', '180px', '190px', '200px']}
-                  h={['165px', '170px', '180px', '190px', '200px']}
+                  w={['165px', '170px', '180px', '180px', '200px']}
+                  h={['165px', '170px', '180px', '180px', '200px']}
                 >
                   <Image src={projectmake} borderRadius="full" w="160px" h="160px" loading="lazy" />
                 </HStack>
@@ -273,8 +287,8 @@ export const Main = React.memo(() => {
                   justify="center"
                   backgroundColor="brand.black"
                   borderRadius="full"
-                  w={['165px', '170px', '180px', '190px', '200px']}
-                  h={['165px', '170px', '180px', '190px', '200px']}
+                  w={['165px', '170px', '180px', '180px', '200px']}
+                  h={['165px', '170px', '180px', '180px', '200px']}
                 >
                   <Image src={parts} borderRadius="full" w="160px" h="160px" loading="lazy" />
                 </HStack>
@@ -288,8 +302,8 @@ export const Main = React.memo(() => {
                   justify="center"
                   backgroundColor="brand.black"
                   borderRadius="full"
-                  w={['165px', '170px', '180px', '190px', '200px']}
-                  h={['165px', '170px', '180px', '190px', '200px']}
+                  w={['165px', '170px', '180px', '180px', '200px']}
+                  h={['165px', '170px', '180px', '180px', '200px']}
                 >
                   <Image src={chipmaking} borderRadius="full" w="160px" h="160px" loading="lazy" />
                 </HStack>
@@ -299,20 +313,33 @@ export const Main = React.memo(() => {
               </VStack>
             </>
           ) : IsLargerThan320 ? (
-            <Stack direction={IsLargerThan320 ? 'row' : 'column'}>
-              <Stack direction={IsLargerThan768 ? 'row' : 'column'}>
+            <Stack direction={IsLargerThan768 ? 'column' : 'row'}>
+              <Stack direction={IsLargerThan768 ? 'row' : 'column'} justify={IsLargerThan768 ? 'center' : ''}>
                 <VStack>
                   <HStack
                     align="center"
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w={IsLargerThan420 ? '160px' : '130px'}
+                    h={IsLargerThan420 ? '160px' : '130px'}
                   >
-                    <Image src={microchipclean} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image
+                      src={microchipclean}
+                      borderRadius="full"
+                      w={IsLargerThan420 ? '150px' : '120px'}
+                      h={IsLargerThan420 ? '150px' : '120px'}
+                      loading="lazy"
+                    />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text
+                    fontSize={IsLargerThan420 ? '16px' : '12px'}
+                    w={IsLargerThan420 ? '200px' : '150px'}
+                    h="50px"
+                    textAlign="center"
+                    fontWeight="600"
+                    color="brand.grayvar2"
+                  >
                     Лакировка плат
                   </Text>
                 </VStack>
@@ -322,12 +349,25 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w={IsLargerThan420 ? '160px' : '130px'}
+                    h={IsLargerThan420 ? '160px' : '130px'}
                   >
-                    <Image src={microchipinside} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image
+                      src={microchipinside}
+                      borderRadius="full"
+                      w={IsLargerThan420 ? '150px' : '120px'}
+                      h={IsLargerThan420 ? '150px' : '120px'}
+                      loading="lazy"
+                    />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text
+                    fontSize={IsLargerThan420 ? '16px' : '12px'}
+                    w={IsLargerThan420 ? '200px' : '150px'}
+                    h="50px"
+                    textAlign="center"
+                    fontWeight="600"
+                    color="brand.grayvar2"
+                  >
                     Проектирование плат
                   </Text>
                 </VStack>
@@ -337,29 +377,55 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w={IsLargerThan420 ? '160px' : '130px'}
+                    h={IsLargerThan420 ? '160px' : '130px'}
                   >
-                    <Image src={projectmake} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image
+                      src={projectmake}
+                      borderRadius="full"
+                      w={IsLargerThan420 ? '150px' : '120px'}
+                      h={IsLargerThan420 ? '150px' : '120px'}
+                      loading="lazy"
+                    />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text
+                    fontSize={IsLargerThan420 ? '16px' : '12px'}
+                    w={IsLargerThan420 ? '200px' : '150px'}
+                    h="50px"
+                    textAlign="center"
+                    fontWeight="600"
+                    color="brand.grayvar2"
+                  >
                     3D-проектирование корпуса
                   </Text>
                 </VStack>
               </Stack>
-              <Stack direction={IsLargerThan768 ? 'row' : 'column'}>
+              <Stack direction={IsLargerThan768 ? 'row' : 'column'} justify={IsLargerThan768 ? 'center' : ''}>
                 <VStack>
                   <HStack
                     align="center"
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w={IsLargerThan420 ? '160px' : '130px'}
+                    h={IsLargerThan420 ? '160px' : '130px'}
                   >
-                    <Image src={parts} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image
+                      src={parts}
+                      borderRadius="full"
+                      w={IsLargerThan420 ? '150px' : '120px'}
+                      h={IsLargerThan420 ? '150px' : '120px'}
+                      loading="lazy"
+                    />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="54px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text
+                    fontSize={IsLargerThan420 ? '16px' : '12px'}
+                    w={IsLargerThan420 ? '200px' : '150px'}
+                    h="54px"
+                    textAlign="center"
+                    fontWeight="600"
+                    color="brand.grayvar2"
+                  >
                     Изготовление прототипов корпуса
                   </Text>
                 </VStack>
@@ -369,12 +435,25 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w={IsLargerThan420 ? '160px' : '130px'}
+                    h={IsLargerThan420 ? '160px' : '130px'}
                   >
-                    <Image src={chipmaking} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image
+                      src={chipmaking}
+                      borderRadius="full"
+                      w={IsLargerThan420 ? '150px' : '120px'}
+                      h={IsLargerThan420 ? '150px' : '120px'}
+                      loading="lazy"
+                    />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="54px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text
+                    fontSize={IsLargerThan420 ? '16px' : '12px'}
+                    w={IsLargerThan420 ? '200px' : '150px'}
+                    h="54px"
+                    textAlign="center"
+                    fontWeight="600"
+                    color="brand.grayvar2"
+                  >
                     Сборка готовых изделий
                   </Text>
                 </VStack>
@@ -382,19 +461,19 @@ export const Main = React.memo(() => {
             </Stack>
           ) : (
             <>
-              <Stack direction="column" spacing="50px">
+              <Stack direction="column" spacing="20px">
                 <VStack>
                   <HStack
                     align="center"
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w="130px"
+                    h="130px"
                   >
-                    <Image src={microchipclean} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image src={microchipclean} borderRadius="full" w="120px" h="120px" loading="lazy" />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text fontSize="12px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
                     Лакировка плат
                   </Text>
                 </VStack>
@@ -404,12 +483,12 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w="130px"
+                    h="130px"
                   >
-                    <Image src={microchipinside} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image src={microchipinside} borderRadius="full" w="120px" h="120px" loading="lazy" />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text fontSize="12px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
                     Проектирование плат
                   </Text>
                 </VStack>
@@ -419,12 +498,12 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w="130px"
+                    h="130px"
                   >
-                    <Image src={projectmake} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image src={projectmake} borderRadius="full" w="120px" h="120px" loading="lazy" />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text fontSize="12px" w="200px" h="50px" textAlign="center" fontWeight="600" color="brand.grayvar2">
                     3D-проектирование корпуса
                   </Text>
                 </VStack>
@@ -434,12 +513,12 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w="130px"
+                    h="130px"
                   >
-                    <Image src={parts} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image src={parts} borderRadius="full" w="120px" h="120px" loading="lazy" />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="54px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text fontSize="12px" w="200px" h="54px" textAlign="center" fontWeight="600" color="brand.grayvar2">
                     Изготовление прототипов корпуса
                   </Text>
                 </VStack>
@@ -449,12 +528,12 @@ export const Main = React.memo(() => {
                     justify="center"
                     backgroundColor="brand.black"
                     borderRadius="full"
-                    w={['165px', '170px', '180px', '190px', '200px']}
-                    h={['165px', '170px', '180px', '190px', '200px']}
+                    w="130px"
+                    h="130px"
                   >
-                    <Image src={chipmaking} borderRadius="full" w="160px" h="160px" loading="lazy" />
+                    <Image src={chipmaking} borderRadius="full" w="120px" h="120px" loading="lazy" />
                   </HStack>
-                  <Text fontSize="20px" w="200px" h="54px" textAlign="center" fontWeight="600" color="brand.grayvar2">
+                  <Text fontSize="12px" w="200px" h="54px" textAlign="center" fontWeight="600" color="brand.grayvar2">
                     Сборка готовых изделий
                   </Text>
                 </VStack>
@@ -463,15 +542,18 @@ export const Main = React.memo(() => {
           )}
         </HStack>
         <HStack justify="center" marginTop="50px">
-          <Button variant="brand-blue" leftIcon={<BsFillTelephoneFill size="20px" />}>
+          <Button
+            variant="brand-blue"
+            fontWeight="400"
+            paddingX="40px"
+            paddingY="15px"
+            leftIcon={<BsFillTelephoneFill size="20px" />}
+          >
             Узнать подробности
           </Button>
         </HStack>
       </VStack>
-      <VStack
-        spacing={['20px', '30px', '60px', '60px', '80px']}
-        marginBottom={['20px', '30px', '40px', '50px', '60px']}
-      >
+      <VStack spacing={IsLargerThan768 ? '100px' : '40px'} marginBottom={['20px', '30px', '40px', '50px', '60px']}>
         <VStack w="full" align="left" marginTop="70px" paddingX={['10px', '20px', '40px', '60px', '100px']}>
           <HStack borderBottom="5px solid #1D8FE4" maxW="500px">
             <Text fontSize={['24px', '28px', '32px', '36px', '48px']} fontWeight="600" color="brand.black">
@@ -483,27 +565,29 @@ export const Main = React.memo(() => {
           </HStack>
         </VStack>
         <Stack
-          direction={IsLargerThan320 ? 'row' : 'column'}
+          direction={IsLargerThan620 ? 'row' : 'column'}
           w="full"
           paddingX={['40px', '50px', '60px', '70px', '80px']}
-          spacing={['20px', '30px', '40px', '50px', '60px']}
+          spacing={IsLargerThan768 ? '100px' : '40px'}
           justify="center"
-          align="center"
+          align={IsLargerThan620 ? 'center' : 'flex-start'}
         >
-          <VStack
-            w={['200px', '250px', '250px', '500px', '600px']}
-            h={['150px', '200px', '200px', '350px', '400px']}
-            bgColor="brand.blue"
-          >
-            <Image
-              src={printer}
-              pos="relative"
-              left={['10px', '20px', '30px', '40px', '50px']}
-              bottom={['10px', '20px', '30px', '40px', '50px']}
-              w={['200px', '250px', '250px', '500px', '600px']}
-              h={['150px', '200px', '200px', '350px', '400px']}
-              loading="lazy"
-            />
+          <VStack>
+            <VStack
+              w={['200px', '250px', '250px', '400px', '600px']}
+              h={['150px', '200px', '200px', '300px', '400px']}
+              bgColor="brand.blue"
+            >
+              <Image
+                src={printer}
+                pos="relative"
+                left={['10px', '20px', '30px', '40px', '50px']}
+                bottom={['10px', '20px', '30px', '40px', '50px']}
+                w={['200px', '250px', '250px', '400px', '600px']}
+                h={['150px', '200px', '200px', '300px', '400px']}
+                loading="lazy"
+              />
+            </VStack>
           </VStack>
           <VStack align="center" justify="center" maxW={IsLargerThan320 ? '400' : ''}>
             <Text fontWeight="600" fontSize={['22px', '24px', '26px', '28px', '30px']}>
@@ -516,24 +600,25 @@ export const Main = React.memo(() => {
           </VStack>
         </Stack>
         <Stack
-          direction={IsLargerThan320 ? 'row' : 'column'}
+          direction={IsLargerThan620 ? 'row' : 'column'}
           w="full"
           paddingX={['40px', '50px', '60px', '70px', '80px']}
-          spacing={['20px', '30px', '40px', '50px', '60px']}
+          spacing={IsLargerThan768 ? '100px' : '40px'}
           justify="center"
-          align="center"
+          align={IsLargerThan620 ? 'center' : 'flex-start'}
+          zIndex={2}
         >
-          {IsLargerThan320 ? (
+          {IsLargerThan620 ? (
             <>
               <VStack
-                align={IsLargerThan320 ? 'flex-end' : 'center'}
+                align={IsLargerThan620 ? 'flex-end' : 'center'}
                 justify="center"
                 maxW={IsLargerThan320 ? '400' : ''}
               >
                 <Text
                   fontWeight="600"
                   fontSize={['22px', '24px', '26px', '28px', '30px']}
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Два автоматических установщика компонентов
                 </Text>
@@ -541,7 +626,7 @@ export const Main = React.memo(() => {
                   fontWeight="400"
                   fontSize={['12px', '12px', '14px', '14px', '16px']}
                   color="brand.gray"
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Оборудование и программное обеспечение разработаны компанией ExpertElectronics при непосредственном
                   участии технических экспертов и инженеров компании СМТ технологии с учетом всех требований к
@@ -555,44 +640,48 @@ export const Main = React.memo(() => {
                   <ListItem>20000 компонентов в час</ListItem>
                 </UnorderedList>
               </VStack>
-              <VStack
-                w={['200px', '250px', '250px', '500px', '600px']}
-                h={['150px', '200px', '200px', '350px', '400px']}
-                bgColor="brand.blue"
-              >
-                <Image
-                  src={autocomponents}
-                  pos="relative"
-                  right={['10px', '20px', '30px', '40px', '50px']}
-                  bottom={['10px', '20px', '30px', '40px', '50px']}
-                  w={['200px', '250px', '250px', '500px', '600px']}
-                  h={['150px', '200px', '200px', '350px', '400px']}
-                  loading="lazy"
-                />
+              <VStack>
+                <VStack
+                  w={['200px', '250px', '250px', '400px', '600px']}
+                  h={['150px', '200px', '200px', '300px', '400px']}
+                  bgColor="brand.blue"
+                >
+                  <Image
+                    src={autocomponents}
+                    pos="relative"
+                    right={['10px', '20px', '30px', '40px', '50px']}
+                    bottom={['10px', '20px', '30px', '40px', '50px']}
+                    w={['200px', '250px', '250px', '400px', '600px']}
+                    h={['150px', '200px', '200px', '300px', '400px']}
+                    loading="lazy"
+                  />
+                </VStack>
               </VStack>
             </>
           ) : (
             <>
-              <VStack
-                w={['200px', '250px', '250px', '500px', '600px']}
-                h={['150px', '200px', '200px', '350px', '400px']}
-                bgColor="brand.blue"
-              >
-                <Image
-                  src={autocomponents}
-                  pos="relative"
-                  right={['10px', '20px', '30px', '40px', '50px']}
-                  bottom={['10px', '20px', '30px', '40px', '50px']}
-                  w={['200px', '250px', '250px', '500px', '600px']}
-                  h={['150px', '200px', '200px', '350px', '400px']}
-                  loading="lazy"
-                />
+              <VStack paddingX="10px">
+                <VStack
+                  w={['200px', '250px', '250px', '400px', '600px']}
+                  h={['150px', '200px', '200px', '300px', '400px']}
+                  bgColor="brand.blue"
+                >
+                  <Image
+                    src={autocomponents}
+                    pos="relative"
+                    right={['10px', '20px', '30px', '40px', '50px']}
+                    bottom={['10px', '20px', '30px', '40px', '50px']}
+                    w={['200px', '250px', '250px', '400px', '600px']}
+                    h={['150px', '200px', '200px', '300px', '400px']}
+                    loading="lazy"
+                  />
+                </VStack>
               </VStack>
               <VStack align="center" justify="center" maxW={IsLargerThan320 ? '400' : ''}>
                 <Text
                   fontWeight="600"
                   fontSize={['22px', '24px', '26px', '28px', '30px']}
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Два автоматических установщика компонентов
                 </Text>
@@ -600,7 +689,7 @@ export const Main = React.memo(() => {
                   fontWeight="400"
                   fontSize={['12px', '14px', '16px', '16px', '16px']}
                   color="brand.gray"
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Оборудование и программное обеспечение разработаны компанией ExpertElectronics при непосредственном
                   участии технических экспертов и инженеров компании СМТ технологии с учетом всех требований к
@@ -612,29 +701,31 @@ export const Main = React.memo(() => {
           )}
         </Stack>
         <Stack
-          direction={IsLargerThan320 ? 'row' : 'column'}
+          direction={IsLargerThan620 ? 'row' : 'column'}
           w="full"
           paddingX={['40px', '50px', '60px', '70px', '80px']}
-          spacing={['20px', '30px', '40px', '50px', '60px']}
+          spacing={IsLargerThan768 ? '100px' : '40px'}
           justify="center"
-          align="center"
+          align={IsLargerThan620 ? 'center' : 'flex-start'}
         >
-          <VStack
-            w={['200px', '250px', '250px', '500px', '600px']}
-            h={['150px', '200px', '200px', '350px', '400px']}
-            bgColor="brand.blue"
-            zIndex={2}
-          >
-            <Image
-              src={makechip}
-              pos="relative"
-              left={['10px', '20px', '30px', '40px', '50px']}
-              bottom={['10px', '20px', '30px', '40px', '50px']}
-              w={['200px', '250px', '250px', '500px', '600px']}
-              h={['150px', '200px', '200px', '350px', '400px']}
-              loading="lazy"
+          <VStack>
+            <VStack
+              w={['200px', '250px', '250px', '400px', '600px']}
+              h={['150px', '200px', '200px', '300px', '400px']}
+              bgColor="brand.blue"
               zIndex={2}
-            />
+            >
+              <Image
+                src={makechip}
+                pos="relative"
+                left={['10px', '20px', '30px', '40px', '50px']}
+                bottom={['10px', '20px', '30px', '40px', '50px']}
+                w={['200px', '250px', '250px', '400px', '600px']}
+                h={['150px', '200px', '200px', '300px', '400px']}
+                loading="lazy"
+                zIndex={2}
+              />
+            </VStack>
           </VStack>
           <VStack align="center" justify="center" maxW={IsLargerThan320 ? '400' : ''} zIndex={2}>
             <Text fontWeight="600" fontSize={['22px', '24px', '26px', '28px', '30px']}>
@@ -657,20 +748,20 @@ export const Main = React.memo(() => {
           <></>
         )}
         <Stack
-          direction={IsLargerThan320 ? 'row' : 'column'}
+          direction={IsLargerThan620 ? 'row' : 'column'}
           w="full"
           paddingX={['40px', '50px', '60px', '70px', '80px']}
-          spacing={['20px', '30px', '40px', '50px', '60px']}
+          spacing={IsLargerThan768 ? '100px' : '40px'}
           justify="center"
-          align="center"
+          align={IsLargerThan620 ? 'center' : 'flex-start'}
         >
-          {IsLargerThan320 ? (
+          {IsLargerThan620 ? (
             <>
-              <VStack align="center" justify="center" maxW={IsLargerThan320 ? '400' : ''}>
+              <VStack align="center" justify="center" maxW={IsLargerThan320 ? '400' : ''} zIndex={2}>
                 <Text
                   fontWeight="600"
                   fontSize={['22px', '24px', '26px', '28px', '30px']}
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Ультразвуковые ванны для отмывки плат
                 </Text>
@@ -685,44 +776,48 @@ export const Main = React.memo(() => {
                   погружаемых изделий.
                 </Text>
               </VStack>
-              <VStack
-                w={['200px', '250px', '250px', '500px', '600px']}
-                h={['150px', '200px', '200px', '350px', '400px']}
-                bgColor="brand.blue"
-              >
-                <Image
-                  src={chipwash}
-                  pos="relative"
-                  right={['10px', '20px', '30px', '40px', '50px']}
-                  bottom={['10px', '20px', '30px', '40px', '50px']}
-                  w={['200px', '250px', '250px', '500px', '600px']}
-                  h={['150px', '200px', '200px', '350px', '400px']}
-                  loading="lazy"
-                />
+              <VStack>
+                <VStack
+                  w={['200px', '250px', '250px', '400px', '600px']}
+                  h={['150px', '200px', '200px', '300px', '400px']}
+                  bgColor="brand.blue"
+                >
+                  <Image
+                    src={chipwash}
+                    pos="relative"
+                    right={['10px', '20px', '30px', '40px', '50px']}
+                    bottom={['10px', '20px', '30px', '40px', '50px']}
+                    w={['200px', '250px', '250px', '400px', '600px']}
+                    h={['150px', '200px', '200px', '300px', '400px']}
+                    loading="lazy"
+                  />
+                </VStack>
               </VStack>
             </>
           ) : (
             <>
-              <VStack
-                w={['200px', '250px', '250px', '500px', '600px']}
-                h={['150px', '200px', '200px', '350px', '400px']}
-                bgColor="brand.blue"
-              >
-                <Image
-                  src={chipwash}
-                  pos="relative"
-                  right={['10px', '20px', '30px', '40px', '50px']}
-                  bottom={['10px', '20px', '30px', '40px', '50px']}
-                  w={['200px', '250px', '250px', '500px', '600px']}
-                  h={['150px', '200px', '200px', '350px', '400px']}
-                  loading="lazy"
-                />
+              <VStack paddingX="10px">
+                <VStack
+                  w={['200px', '250px', '250px', '400px', '600px']}
+                  h={['150px', '200px', '200px', '300px', '400px']}
+                  bgColor="brand.blue"
+                >
+                  <Image
+                    src={chipwash}
+                    pos="relative"
+                    right={['10px', '20px', '30px', '40px', '50px']}
+                    bottom={['10px', '20px', '30px', '40px', '50px']}
+                    w={['200px', '250px', '250px', '400px', '600px']}
+                    h={['150px', '200px', '200px', '300px', '400px']}
+                    loading="lazy"
+                  />
+                </VStack>
               </VStack>
               <VStack align="center" justify="center" maxW={IsLargerThan320 ? '400' : ''}>
                 <Text
                   fontWeight="600"
                   fontSize={['22px', '24px', '26px', '28px', '30px']}
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Ультразвуковые ванны для отмывки плат
                 </Text>
@@ -730,7 +825,7 @@ export const Main = React.memo(() => {
                   fontWeight="400"
                   fontSize={['12px', '14px', '16px', '16px', '16px']}
                   color="brand.gray"
-                  textAlign={IsLargerThan320 ? 'right' : 'left'}
+                  textAlign={IsLargerThan620 ? 'right' : 'left'}
                 >
                   Ультразвуковые отмывочные ванны предназначены для ультразвуковой очистки твердых тел от загрязнения с
                   помощью специальных моющих средств, заполняемых в резервуар ванны до уровня, совместимого с габаритами
@@ -745,13 +840,13 @@ export const Main = React.memo(() => {
         <VStack
           bgColor="brand.lightgray"
           w="full"
-          paddingX={['10px', '10px', '20px', '40px', '100px']}
-          paddingY={['10px', '20px', '25px', '30px', '40px']}
+          paddingX={['10px', '10px', '20px', '40px', '50px']}
+          paddingY={['0px', '20px', '25px', '30px', '40px']}
           spacing={['20px', '20px', '30px', '40px', '40px']}
           marginTop="80px"
           align="space-between"
         >
-          <HStack justify="center">
+          <HStack justify={IsLargerThan620 ? 'space-between' : 'center'}>
             <HStack>
               <Text fontSize={['24px', '28px', '32px', '36px', '48px']} fontWeight="600" color="brand.blue">
                 Примеры{' '}
@@ -760,53 +855,105 @@ export const Main = React.memo(() => {
                 наших работ
               </Text>
             </HStack>
+            {IsLargerThan620 ? (
+              <HStack>
+                <Button
+                  onClick={() => {
+                    if (LCard === 0) {
+                      setLCard(cards.length - 1);
+                    } else {
+                      setLCard(LCard - 1);
+                    }
+                    if (centralCard === 0) {
+                      setCard(cards.length - 1);
+                    } else {
+                      setCard(centralCard - 1);
+                    }
+                    if (RCard === 0) {
+                      setRCard(cards.length - 1);
+                    } else {
+                      setRCard(RCard - 1);
+                    }
+                  }}
+                  variant="brand-blue"
+                  borderRadius="full"
+                  w="20px"
+                  leftIcon={<BsArrowLeft size={20} />}
+                ></Button>
+                <Button
+                  onClick={() => {
+                    if (LCard === cards.length - 1) {
+                      setLCard(0);
+                    } else {
+                      setLCard(LCard + 1);
+                    }
+                    if (centralCard === cards.length - 1) {
+                      setCard(0);
+                    } else {
+                      setCard(centralCard + 1);
+                    }
+                    if (RCard === cards.length - 1) {
+                      setRCard(0);
+                    } else {
+                      setRCard(RCard + 1);
+                    }
+                  }}
+                  variant="brand-blue"
+                  borderRadius="full"
+                  w="20px"
+                  leftIcon={<BsArrowRight size={20} />}
+                ></Button>
+              </HStack>
+            ) : (
+              <></>
+            )}
           </HStack>
           <Stack
             spacing={['5px', '10px', '10px', '20px', '30px']}
-            direction={IsLargerThan320 ? 'row' : 'column'}
+            direction={IsLargerThan620 ? 'row' : 'column'}
             align="center"
             justify="center"
           >
             <HStack
               layerStyle="brand-gradient-blue"
-              w={['160px', '160px', '160px', '220px', '400px']}
-              h={['160px', '160px', '160px', '220px', '400px']}
+              w={['240px', '180px', '180px', '220px', '370px']}
+              h={['240px', '180px', '180px', '220px', '370px']}
               align="center"
               justify="center"
             >
               <Image
-                src={chip1}
+                src={cards[LCard]}
                 loading="lazy"
-                w={['150px', '150px', '150px', '200px', '350px']}
-                h={['150px', '150px', '150px', '200px', '350px']}
+                w={['220px', '170px', '170px', '200px', '350px']}
+                h={['220px', '170px', '170px', '200px', '350px']}
               />
             </HStack>
             <HStack
               layerStyle="brand-gradient-blue"
-              w={['160px', '160px', '160px', '220px', '400px']}
-              h={['160px', '160px', '160px', '220px', '400px']}
+              w={['240px', '180px', '180px', '220px', '370px']}
+              h={['240px', '180px', '180px', '220px', '370px']}
               align="center"
               justify="center"
             >
               <Image
-                src={chip2}
+                src={cards[centralCard]}
                 loading="lazy"
-                w={['150px', '150px', '150px', '200px', '350px']}
-                h={['150px', '150px', '150px', '200px', '350px']}
+                w={['220px', '170px', '170px', '200px', '350px']}
+                h={['220px', '170px', '170px', '200px', '350px']}
               />
             </HStack>
             <HStack
               layerStyle="brand-gradient-blue"
-              w={['160px', '160px', '160px', '220px', '400px']}
-              h={['160px', '160px', '160px', '220px', '400px']}
+              w={['240px', '180px', '180px', '220px', '370px']}
+              h={['240px', '180px', '180px', '220px', '370px']}
               align="center"
               justify="center"
             >
               <Image
-                src={chip3}
+                src={cards[RCard]}
                 loading="lazy"
-                w={['150px', '150px', '150px', '200px', '350px']}
-                h={['150px', '150px', '150px', '200px', '350px']}
+                w={['220px', '170px', '170px', '200px', '350px']}
+                h={['220px', '170px', '170px', '200px', '350px']}
               />
             </HStack>
           </Stack>
@@ -821,7 +968,7 @@ export const Main = React.memo(() => {
         paddingX="20px"
       >
         <Stack align="center" justify="space-around" direction={IsLargerThan768 ? 'row' : 'column'}>
-          <VStack align={IsLargerThan768 ? 'left' : 'center'} justify="center" maxW="450px" padding="20px">
+          <VStack align={IsLargerThan768 ? 'left' : 'center'} justify="center" maxW="450px" padding="20px" spacing={0}>
             <Text fontSize={['24px', '28px', '32px', '36px', '48px']} fontWeight="600" color="brand.black">
               Хотите обсудить{' '}
             </Text>
@@ -837,7 +984,7 @@ export const Main = React.memo(() => {
               Заполните форму и мы ответим Вам в течении дня
             </Text>
           </VStack>
-          <VStack>
+          <VStack align="center">
             <Formik
               initialValues={
                 {
@@ -850,16 +997,16 @@ export const Main = React.memo(() => {
               validationSchema={FormValidation}
             >
               <Form>
-                <VStack spacing="15px">
+                <VStack spacing="15px" align="center">
                   <VStack align="left">
-                    <Text fontSize="14px" fontWeight="400" color="brand.gray">
+                    <Text fontSize="14px" fontWeight="400" color="brand.gray" textAlign="left">
                       {' '}
                       Ваш email
                     </Text>
                     <Field
                       as={Input}
                       id="email"
-                      w={['200px', '200px', '250px', '300px', '350px']}
+                      w={['300px', '400px', '250px', '300px', '350px']}
                       h="45px"
                       borderColor="brand.gray"
                       borderRadius="0px"
@@ -869,14 +1016,14 @@ export const Main = React.memo(() => {
                     ></Field>
                   </VStack>
                   <VStack align="left">
-                    <Text fontSize="14px" fontWeight="400" color="brand.gray">
+                    <Text fontSize="14px" fontWeight="400" color="brand.gray" textAlign="left">
                       {' '}
                       Ваше имя
                     </Text>
                     <Field
                       as={Input}
                       id="name"
-                      w={['200px', '200px', '250px', '300px', '350px']}
+                      w={['300px', '400px', '250px', '300px', '350px']}
                       h="45px"
                       borderColor="brand.gray"
                       borderRadius="0px"
@@ -886,14 +1033,14 @@ export const Main = React.memo(() => {
                     ></Field>
                   </VStack>
                   <VStack align="left">
-                    <Text fontSize="14px" fontWeight="400" color="brand.gray">
+                    <Text fontSize="14px" fontWeight="400" color="brand.gray" textAlign="left">
                       {' '}
                       Ваше сообщение
                     </Text>
                     <Field
                       as={Textarea}
                       id="message"
-                      w={['200px', '200px', '250px', '300px', '350px']}
+                      w={['300px', '400px', '250px', '300px', '350px']}
                       h="150px"
                       borderColor="brand.gray"
                       borderRadius="0px"
@@ -902,7 +1049,9 @@ export const Main = React.memo(() => {
                       color="brand.black"
                       resize="none"
                     ></Field>
-                    <Button type="submit" variant="brand-blue">
+                  </VStack>
+                  <VStack align="center">
+                    <Button type="submit" variant="brand-blue" paddingX="40px" paddingY="15px">
                       Оставить заявку
                     </Button>
                   </VStack>

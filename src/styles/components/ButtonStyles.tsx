@@ -45,7 +45,7 @@ export const ButtonStyles = {
       bg: 'transparent',
       _hover: {
         bg: 'transparent',
-        borderBottom: '5px solid #1D8FE4'
+        borderBottom: '5px solid #1D8FE4',
       },
     },
     'brand-dark-button': {
@@ -65,6 +65,18 @@ export const ButtonStyles = {
         color: 'brand.beige',
         border: '2px',
         borderColor: '5px solid #1D8FE4',
+      },
+    },
+    'brand-white-button': {
+      color: 'brand.blue',
+      bgColor: 'brand.grayvar2',
+      border: '2px',
+      borderColor: '5px solid #1D8FE4',
+      _hover: {
+        layerStyle: 'brand-gradient-blue',
+        border: '2px',
+        borderColor: '5px solid #1D8FE4',
+        bgColor: 'brand.blue',
       },
     },
     'brand-blue': {
@@ -87,11 +99,11 @@ export const ButtonStyles = {
       },
     },
   },
-    link: {
-      color: 'brand.gray.umber',
-    },
-    defaultProps: {
-      size: 'sm',
-      variant: 'brand-transparent',
-    },
-  };
+  link: {
+    color: 'brand.gray.umber',
+  },
+  defaultProps: {
+    size: 'sm',
+    variant: 'brand-transparent',
+  },
+};

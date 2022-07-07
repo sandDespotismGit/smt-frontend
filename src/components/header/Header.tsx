@@ -9,7 +9,9 @@ import ulsmtlogo from '../../assets/ulsmtlogo.png';
 export const Header = React.memo(() => {
   const [IsLargerThan768] = useMediaQuery('(min-width: 769px)');
   const [IsLargerThan1024] = useMediaQuery('(min-width: 1025px)');
-  const [IsLargerThan320] = useMediaQuery('(min-width: 321px)');
+  const [IsLargerThan1100] = useMediaQuery('(min-width: 1100px)');
+  // const [IsLargerThan320] = useMediaQuery('(min-width: 321px)');
+  const [IsLargerThan620] = useMediaQuery('(min-width: 620px)');
   return (
     <HStack
       w="full"
@@ -20,14 +22,14 @@ export const Header = React.memo(() => {
       spacing="0"
     >
       <HStack justify="space-between">
-        {IsLargerThan1024 ? (
-          <HStack minW="114px">
+        {IsLargerThan1100 ? (
+          <HStack minW="140px">
             <Box>
               <Image
                 src={logovector}
                 alt="ULSMT"
                 loading="lazy"
-                w={['40px', '40px', '40px', '53px']}
+                // w={['40px', '40px', '40px', '53px']}
                 h={['40px', '40px', '40px', '53px']}
               />
             </Box>
@@ -36,7 +38,7 @@ export const Header = React.memo(() => {
                 src={ulsmtlogo}
                 alt="монтаж печатных плат"
                 loading="lazy"
-                w={['53px', '74px', '74px', '120px']}
+                // w={['53px', '74px', '74px', '120px']}
                 h={['40px', '40px', '40px', '53px']}
               />
             </Box>
@@ -47,16 +49,17 @@ export const Header = React.memo(() => {
               src={logovector}
               alt="ULSMT"
               loading="lazy"
-              w={['40px', '40px', '40px', '53px']}
+              // w={['40px', '40px', '40px', '53px']}
               h={['40px', '40px', '40px', '53px']}
             />
           </Box>
         )}
       </HStack>
-      <HStack spacing={['0px', '10px', '20px', '30px']} justify="center">
-        {IsLargerThan768 ? (
+      <HStack spacing="10px" justify="center">
+        {IsLargerThan1024 ? (
           <>
             <Button
+              fontWeight="400"
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
@@ -64,6 +67,7 @@ export const Header = React.memo(() => {
               О компании
             </Button>
             <Button
+              fontWeight="400"
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
@@ -71,6 +75,7 @@ export const Header = React.memo(() => {
               Услуги
             </Button>
             <Button
+              fontWeight="400"
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
@@ -78,6 +83,7 @@ export const Header = React.memo(() => {
               Документация
             </Button>
             <Button
+              fontWeight="400"
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
@@ -93,30 +99,54 @@ export const Header = React.memo(() => {
         {IsLargerThan768 ? (
           <HStack></HStack>
         ) : (
-          <Menu>
+          <Menu isLazy={true}>
             <MenuButton
               as={Button}
               variant="brand-blue"
-              h={['23px', '40px', '40px', '53px']}
+              h={['40px', '40px', '40px', '53px']}
+              paddingY="15px"
               align="center"
               justify="center"
             >
               <HamburgerIcon color="white" />
             </MenuButton>
-            <MenuList zIndex={3}>
-              <MenuItem color="brand.gray">О компании</MenuItem>
-              <MenuItem color="brand.gray">Услуги</MenuItem>
-              <MenuItem color="brand.gray">Документация</MenuItem>
-              <MenuItem color="brand.gray">Контакты</MenuItem>
+            <MenuList zIndex={3} paddingTop={0} paddingBottom={0} boxShadow={0}>
+              <MenuItem
+                as={Button}
+                variant="brand-white-button"
+                borderTop="4px"
+                borderLeft="4px"
+                borderRight="4px"
+                fontWeight="400"
+              >
+                О компании
+              </MenuItem>
+              <MenuItem as={Button} variant="brand-white-button" fontWeight="400" borderLeft="4px" borderRight="4px">
+                Услуги
+              </MenuItem>
+              <MenuItem as={Button} variant="brand-white-button" fontWeight="400" borderLeft="4px" borderRight="4px">
+                Документация
+              </MenuItem>
+              <MenuItem
+                as={Button}
+                variant="brand-white-button"
+                fontWeight="400"
+                borderLeft="4px"
+                borderRight="4px"
+                borderBottom="4px"
+              >
+                Контакты
+              </MenuItem>
             </MenuList>
           </Menu>
         )}
-        {IsLargerThan320 ? (
+        {IsLargerThan620 ? (
           <>
             <Button
               variant="brand-white"
-              paddingX={['5px', '10px', '15px', '20px']}
-              paddingY="20px"
+              paddingX={['5px', '10px', '15px', '30px']}
+              paddingY="15px"
+              fontWeight="400"
               h={['23px', '40px', '40px', '53px']}
               leftIcon={<BsPersonCircle size="20px" />}
             >
@@ -125,8 +155,9 @@ export const Header = React.memo(() => {
             <Button
               variant="brand-blue"
               h={['40px', '40px', '40px', '53px']}
-              paddingY="20px"
-              paddingX={['5px', '10px', '15px', '20px']}
+              paddingY="15px"
+              fontWeight="400"
+              paddingX={['5px', '10px', '15px', '30px']}
               leftIcon={<BsFillTelephoneFill size="20px" />}
             >
               +7(999)999-99-99
@@ -136,8 +167,9 @@ export const Header = React.memo(() => {
           <Button
             variant="brand-white"
             paddingX={['5px', '10px', '15px', '20px']}
-            paddingY="20px"
-            h={['23px', '40px', '40px', '53px']}
+            paddingY="15px"
+            fontWeight="400"
+            h={['40px', '40px', '40px', '53px']}
             leftIcon={<BsPersonCircle size="20px" />}
           >
             Войти

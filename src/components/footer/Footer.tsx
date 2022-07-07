@@ -11,6 +11,7 @@ export const Footer = React.memo(() => {
   const [IsLargerThan320] = useMediaQuery('(min-width: 321px)');
   const [IsLargerThan768] = useMediaQuery('(min-width: 769px)');
   const [IsLargerThan1024] = useMediaQuery('(min-width: 1025px)');
+  const [IsLargerThan620] = useMediaQuery('(min-width: 620px)');
   return (
     <VStack
       w="full"
@@ -23,12 +24,13 @@ export const Footer = React.memo(() => {
       <Stack
         pos="relative"
         top="50px"
-        w={(width / 4) * 3}
+        w={(width / 16) * 14}
         layerStyle="brand-gradient-blue"
         align="center"
         justify="space-around"
         padding={['5px', '10px', '20px', '30px', '40px']}
         direction={IsLargerThan320 ? 'row' : 'column'}
+        marginBottom="20px"
       >
         <HStack>
           <Text fontSize={['14px', '16px', '18px', '20px', '36px']} fontWeight="600" color="brand.white">
@@ -41,7 +43,7 @@ export const Footer = React.memo(() => {
               <BsFillTelephoneFill color="white" />
             </HStack>
             <VStack align="start" justify="start" spacing={0}>
-              <Text fontSize={['10px', '12px', '14px', '16px', '18px']} fontWeight="400" color="brand.white">
+              <Text fontSize={['10px', '14px', '16px', '18px', '20px']} fontWeight="400" color="brand.white">
                 Телефон:
               </Text>
               <Text fontSize={['14px', '16px', '18px', '20px', '24px']} fontWeight="600" color="brand.white">
@@ -54,7 +56,7 @@ export const Footer = React.memo(() => {
               <BsFillTelephoneFill color="white" />
             </HStack>
             <VStack align="start" justify="start" spacing={0}>
-              <Text fontSize={['10px', '12px', '14px', '16px', '18px']} fontWeight="400" color="brand.white">
+              <Text fontSize={['10px', '14px', '16px', '18px', '20px']} fontWeight="400" color="brand.white">
                 Email:
               </Text>
               <Text fontSize={['14px', '16px', '18px', '20px', '24px']} fontWeight="600" color="brand.white">
@@ -111,18 +113,18 @@ export const Footer = React.memo(() => {
             )}
           </HStack>
           <HStack spacing={['0px', '10px', '20px', '30px', '40px']} justify="center">
-            {IsLargerThan320 ? (
+            {IsLargerThan620 ? (
               <>
-                <Button variant="brand-dark-button" w="100px">
+                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
                   О компании
                 </Button>
-                <Button variant="brand-dark-button" w="100px">
+                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
                   Услуги
                 </Button>
-                <Button variant="brand-dark-button" w="100px">
+                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
                   Документация
                 </Button>
-                <Button variant="brand-dark-button" w="100px">
+                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
                   Контакты
                 </Button>
               </>
