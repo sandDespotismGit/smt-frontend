@@ -7,7 +7,7 @@ import logovector from '../../assets/logovector.png';
 import ulsmtlogo from '../../assets/ulsmtlogo.png';
 
 export const Header = React.memo(() => {
-  const [IsLargerThan768] = useMediaQuery('(min-width: 769px)');
+  // const [IsLargerThan768] = useMediaQuery('(min-width: 769px)');
   const [IsLargerThan1024] = useMediaQuery('(min-width: 1025px)');
   const [IsLargerThan1100] = useMediaQuery('(min-width: 1100px)');
   // const [IsLargerThan320] = useMediaQuery('(min-width: 321px)');
@@ -96,8 +96,8 @@ export const Header = React.memo(() => {
         )}
       </HStack>
       <HStack spacing={['0px', '8px', '16px', '24px']}>
-        {IsLargerThan768 ? (
-          <HStack></HStack>
+        {IsLargerThan1024 ? (
+          <></>
         ) : (
           <Menu isLazy={true}>
             <MenuButton

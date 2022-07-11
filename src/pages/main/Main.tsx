@@ -65,7 +65,7 @@ export const Main = React.memo(() => {
   return (
     <Stack direction="column" bg="brand.grayvar2" spacing="0" marginBottom="0px">
       <Header />
-      <Stack direction={IsLargerThan620 ? 'row' : 'column'} marginTop="0px" justify="space-between" align="flex-start">
+      <Stack direction={IsLargerThan768 ? 'row' : 'column'} marginTop="0px" justify="space-between" align="flex-start">
         <VStack
           paddingX={['10px', '20px', '40px', '60px', '100px']}
           paddingY={['40px', '50px', '60px', '70px', '80px']}
@@ -151,13 +151,15 @@ export const Main = React.memo(() => {
               >
                 <GiRobotGrab color="white" size="30px" />
               </HStack>
-              <Text fontSize="20px" fontWeight="700" color="brand.white" textAlign="center">
-                Автоматический поверхностный
-              </Text>
-              <Text fontSize="16px" fontWeight="400" color="brand.grayvar2" textAlign="center">
-                Установка компонентов различных типов на плату с использованием профессионального оборудования.Монтаж
-                может быть выполнен с обеих сторон печатной платы
-              </Text>
+              <VStack maxW="400px">
+                <Text fontSize="20px" fontWeight="700" color="brand.white" textAlign="center">
+                  Автоматический поверхностный
+                </Text>
+                <Text fontSize="16px" fontWeight="400" color="brand.grayvar2" textAlign="center">
+                  Установка компонентов различных типов на плату с использованием профессионального оборудования.Монтаж
+                  может быть выполнен с обеих сторон печатной платы
+                </Text>
+              </VStack>
             </VStack>
             {IsLargerThan620 ? (
               <VStack
@@ -183,13 +185,15 @@ export const Main = React.memo(() => {
                 >
                   <FaRegHandPaper color="white" size="30px" />
                 </HStack>
-                <Text fontSize="20px" fontWeight="700" color="brand.white" textAlign="center">
-                  Ручной поверхностный и выводной монтаж
-                </Text>
-                <Text fontSize="16px" fontWeight="400" color="brand.grayvar2" textAlign="center">
-                  При необходимости можем выполнить монтаж SMD компонентов ручным способом для малой партии, кроме того
-                  выполняем DIP-монтаж ручным способом (любой объем партии)
-                </Text>
+                <VStack maxW="400px">
+                  <Text fontSize="20px" fontWeight="700" color="brand.white" textAlign="center">
+                    Ручной поверхностный и выводной монтаж
+                  </Text>
+                  <Text fontSize="16px" fontWeight="400" color="brand.grayvar2" textAlign="center">
+                    При необходимости можем выполнить монтаж SMD компонентов ручным способом для малой партии, кроме
+                    того выполняем DIP-монтаж ручным способом (любой объем партии)
+                  </Text>
+                </VStack>
               </VStack>
             ) : (
               <VStack align="center" justify="center" spacing="25px" maxW={(width / 3) * 2}>
@@ -203,13 +207,15 @@ export const Main = React.memo(() => {
                 >
                   <FaRegHandPaper color="white" size="30px" />
                 </HStack>
-                <Text fontSize="20px" fontWeight="700" color="brand.white" textAlign="center">
-                  Ручной поверхностный и выводной монтаж
-                </Text>
-                <Text fontSize="16px" fontWeight="400" color="brand.grayvar2" textAlign="center">
-                  При необходимости можем выполнить монтаж SMD компонентов ручным способом для малой партии, кроме того
-                  выполняем DIP-монтаж ручным способом (любой объем партии)
-                </Text>
+                <VStack maxW="400px">
+                  <Text fontSize="20px" fontWeight="700" color="brand.white" textAlign="center">
+                    Ручной поверхностный и выводной монтаж
+                  </Text>
+                  <Text fontSize="16px" fontWeight="400" color="brand.grayvar2" textAlign="center">
+                    При необходимости можем выполнить монтаж SMD компонентов ручным способом для малой партии, кроме
+                    того выполняем DIP-монтаж ручным способом (любой объем партии)
+                  </Text>
+                </VStack>
               </VStack>
             )}
           </Stack>
@@ -219,10 +225,9 @@ export const Main = React.memo(() => {
         w="full"
         layerStyle="brand-gradient-dark-blue"
         align="center"
-        spacing={IsLargerThan320 ? '50px' : '10px'}
-        paddingY={IsLargerThan320 ? '20px' : '10px'}
+        spacing={IsLargerThan320 ? '80px' : '10px'}
+        paddingY={['60px', '35px', '30px', '50px', '55px']}
         justify="flex-start"
-        paddingBottom="35px"
         zIndex={2}
       >
         <HStack align="center" justify="center">
@@ -840,13 +845,15 @@ export const Main = React.memo(() => {
         <VStack
           bgColor="brand.lightgray"
           w="full"
-          paddingX={['10px', '10px', '20px', '40px', '50px']}
-          paddingY={['0px', '20px', '25px', '30px', '40px']}
+          paddingY="40px"
           spacing={['20px', '20px', '30px', '40px', '40px']}
           marginTop="80px"
           align="space-between"
         >
-          <HStack justify={IsLargerThan620 ? 'space-between' : 'center'}>
+          <HStack
+            justify={IsLargerThan620 ? 'space-between' : 'center'}
+            paddingX={['10px', '20px', '40px', '60px', '100px']}
+          >
             <HStack>
               <Text fontSize={['24px', '28px', '32px', '36px', '48px']} fontWeight="600" color="brand.blue">
                 Примеры{' '}
@@ -963,7 +970,7 @@ export const Main = React.memo(() => {
         w="full"
         align="center"
         justify="center"
-        paddingBottom="100px"
+        paddingBottom="120px"
         paddingTop={['40px', '40px', '60px', '80px', '100px']}
         paddingX="20px"
       >

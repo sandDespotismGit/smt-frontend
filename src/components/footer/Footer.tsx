@@ -28,7 +28,7 @@ export const Footer = React.memo(() => {
         layerStyle="brand-gradient-blue"
         align="center"
         justify="space-around"
-        padding={['5px', '10px', '20px', '30px', '40px']}
+        padding={['20px', '20px', '20px', '30px', '40px']}
         direction={IsLargerThan320 ? 'row' : 'column'}
         marginBottom="20px"
       >
@@ -39,7 +39,14 @@ export const Footer = React.memo(() => {
         </HStack>
         <Stack direction={IsLargerThan768 ? 'row' : 'column'} spacing={['10px', '20px', '30px', '40px', '80px']}>
           <HStack spacing={2}>
-            <HStack backgroundColor="brand.black" borderRadius="full" w="50px" h="50px" align="center" justify="center">
+            <HStack
+              backgroundColor="brand.black"
+              borderRadius="full"
+              w={IsLargerThan620 ? '50px' : '40px'}
+              h={IsLargerThan620 ? '50px' : '40px'}
+              align="center"
+              justify="center"
+            >
               <BsFillTelephoneFill color="white" />
             </HStack>
             <VStack align="start" justify="start" spacing={0}>
@@ -52,7 +59,14 @@ export const Footer = React.memo(() => {
             </VStack>
           </HStack>
           <HStack spacing={2}>
-            <HStack backgroundColor="brand.black" borderRadius="full" w="50px" h="50px" align="center" justify="center">
+            <HStack
+              backgroundColor="brand.black"
+              borderRadius="full"
+              w={IsLargerThan620 ? '50px' : '40px'}
+              h={IsLargerThan620 ? '50px' : '40px'}
+              align="center"
+              justify="center"
+            >
               <BsFillTelephoneFill color="white" />
             </HStack>
             <VStack align="start" justify="start" spacing={0}>
@@ -115,16 +129,16 @@ export const Footer = React.memo(() => {
           <HStack spacing={['0px', '10px', '20px', '30px', '40px']} justify="center">
             {IsLargerThan620 ? (
               <>
-                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
+                <Button variant="brand-dark-button" w="100px" fontWeight="400">
                   О компании
                 </Button>
-                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
+                <Button variant="brand-dark-button" w="100px" fontWeight="400">
                   Услуги
                 </Button>
-                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
+                <Button variant="brand-dark-button" w="100px" fontWeight="400">
                   Документация
                 </Button>
-                <Button variant="brand-dark-button" w="100px" fontWeight='400'>
+                <Button variant="brand-dark-button" w="100px" fontWeight="400">
                   Контакты
                 </Button>
               </>
