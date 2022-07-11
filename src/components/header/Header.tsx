@@ -1,10 +1,12 @@
 import { Box, Button, HStack, Image, useMediaQuery, Menu, MenuItem, MenuList, MenuButton } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { BsPersonCircle, BsFillTelephoneFill } from 'react-icons/bs';
 
 import logovector from '../../assets/logovector.png';
 import ulsmtlogo from '../../assets/ulsmtlogo.png';
+import { ROUTE_NOTFOUND } from '../../constants/routes';
 
 export const Header = React.memo(() => {
   // const [IsLargerThan768] = useMediaQuery('(min-width: 769px)');
@@ -63,6 +65,8 @@ export const Header = React.memo(() => {
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
+              as={RouterLink}
+              to={ROUTE_NOTFOUND}
             >
               О компании
             </Button>
@@ -71,6 +75,8 @@ export const Header = React.memo(() => {
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
+              as={RouterLink}
+              to={ROUTE_NOTFOUND}
             >
               Услуги
             </Button>
@@ -79,6 +85,8 @@ export const Header = React.memo(() => {
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
+              as={RouterLink}
+              to={ROUTE_NOTFOUND}
             >
               Документация
             </Button>
@@ -87,6 +95,8 @@ export const Header = React.memo(() => {
               variant="brand-blue-button"
               w={['40px', '60px', '80px', '100px']}
               h={['23px', '40px', '40px', '53px']}
+              as={RouterLink}
+              to={ROUTE_NOTFOUND}
             >
               Контакты
             </Button>
@@ -137,8 +147,8 @@ export const Header = React.memo(() => {
           <>
             <Button
               variant="brand-white"
-              paddingX={['5px', '10px', '15px', '30px']}
-              paddingY="15px"
+              paddingX={IsLargerThan1024 ? '30px' : '20px'}
+              paddingY={IsLargerThan1024 ? '15px' : '10px'}
               fontWeight="400"
               h={['23px', '40px', '40px', '53px']}
               leftIcon={<BsPersonCircle size="20px" />}
@@ -148,9 +158,9 @@ export const Header = React.memo(() => {
             <Button
               variant="brand-blue"
               h={['40px', '40px', '40px', '53px']}
-              paddingY="15px"
+              paddingY={IsLargerThan1024 ? '15px' : '10px'}
               fontWeight="400"
-              paddingX={['5px', '10px', '15px', '30px']}
+              paddingX={IsLargerThan1024 ? '30px' : '20px'}
               leftIcon={<BsFillTelephoneFill size="20px" />}
             >
               +7(999)999-99-99
@@ -159,8 +169,8 @@ export const Header = React.memo(() => {
         ) : (
           <Button
             variant="brand-white"
-            paddingX={['5px', '10px', '15px', '20px']}
-            paddingY="15px"
+            paddingX={IsLargerThan1024 ? '30px' : '20px'}
+            paddingY={IsLargerThan1024 ? '15px' : '10px'}
             fontWeight="400"
             h={['40px', '40px', '40px', '53px']}
             leftIcon={<BsPersonCircle size="20px" />}

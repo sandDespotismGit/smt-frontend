@@ -129,7 +129,7 @@ export const Main = React.memo(() => {
         marginBottom="60px"
         paddingBottom="120px"
       >
-        <HStack borderBottom="5px solid #1D8FE4" w={['220px', '240px', '270px', '320px', '420px']}>
+        <HStack borderBottom="5px solid #1D8FE4" w={['220px', '240px', '270px', '320px', '420px']} marginTop="80px">
           <Text fontSize={['24px', '28px', '32px', '36px', '48px']} fontWeight="600" color="brand.black">
             Виды монтажа
           </Text>

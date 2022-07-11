@@ -3,7 +3,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import * as Sentry from '@sentry/react';
 
 // import { store } from '../reducers/store';
-import { ROUTE_MAINPAGE } from '../constants/routes';
+import { NotFoundPage } from 'pages/notfound/NotFound';
+
+import { ROUTE_MAINPAGE, ROUTE_NOTFOUND } from '../constants/routes';
 import { Main } from '../pages/main/Main';
 
 export const App = () => (
@@ -12,6 +14,7 @@ export const App = () => (
     <BrowserRouter>
       <Switch>
         <Route key={ROUTE_MAINPAGE} exact path={ROUTE_MAINPAGE} component={Main} />
+        <Route key={ROUTE_NOTFOUND} path="*" component={NotFoundPage} />
       </Switch>
     </BrowserRouter>
     {/* </Provider> */}
