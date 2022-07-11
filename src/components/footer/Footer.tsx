@@ -85,7 +85,7 @@ export const Footer = React.memo(() => {
         h={['200px', '210px', '215px', '220px', '230px']}
         justify="space-between"
         align="flex-end"
-        paddingX="70px"
+        paddingX={['10px', '20px', '40px', '60px', '100px']}
         paddingY="50px"
         layerStyle="brand-gradient-dark-blue"
         margin="20px"
@@ -146,7 +146,7 @@ export const Footer = React.memo(() => {
               <HStack></HStack>
             )}
           </HStack>
-          <HStack>
+          <HStack minW="110px">
             <Text fontSize="16px" fontWeight="400" color="brand.grayvar2">
               © 2022 ULSMT
             </Text>

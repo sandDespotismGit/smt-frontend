@@ -100,15 +100,8 @@ export const Header = React.memo(() => {
           <></>
         ) : (
           <Menu isLazy={true}>
-            <MenuButton
-              as={Button}
-              variant="brand-blue"
-              h={['40px', '40px', '40px', '53px']}
-              paddingY="15px"
-              align="center"
-              justify="center"
-            >
-              <HamburgerIcon color="white" />
+            <MenuButton padding="20px">
+              <HamburgerIcon color="brand.blue" w="30px" h="30px" />
             </MenuButton>
             <MenuList zIndex={3} paddingTop={0} paddingBottom={0} boxShadow={0}>
               <MenuItem

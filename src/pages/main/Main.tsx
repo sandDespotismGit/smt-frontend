@@ -52,7 +52,7 @@ export const Main = React.memo(() => {
   const [IsLargerThan620] = useMediaQuery('(min-width: 620px)');
   const [IsLargerThan420] = useMediaQuery('(min-width: 420px)');
   const FormValidation = Yup.object().shape({
-    email: Yup.string().email('iinvalid email adress').required('required'),
+    email: Yup.string().email('invalid email adress').required('required'),
     name: Yup.string().min(2, 'must be at least 2 characters').required('required'),
     message: Yup.string().min(10, 'too short for submit').required('required'),
   });
@@ -97,7 +97,14 @@ export const Main = React.memo(() => {
                 Доставим готовые изделия в любую точку России.
               </Text>
             </VStack>
-            <Button variant="brand-blue" maxH="57px" maxW="260px" paddingX="40px" paddingY="15px" fontWeight="400">
+            <Button
+              variant="brand-blue"
+              h={IsLargerThan1024 ? '57px' : '50px'}
+              w={IsLargerThan1024 ? '260px' : '200px'}
+              paddingX="40px"
+              paddingY="15px"
+              fontWeight="400"
+            >
               Заказать монтаж
             </Button>
           </VStack>
@@ -120,7 +127,7 @@ export const Main = React.memo(() => {
         paddingX={['10px', '20px', '40px', '60px', '100px']}
         align="left"
         marginBottom="60px"
-        paddingBottom="50px"
+        paddingBottom="120px"
       >
         <HStack borderBottom="5px solid #1D8FE4" w={['220px', '240px', '270px', '320px', '420px']}>
           <Text fontSize={['24px', '28px', '32px', '36px', '48px']} fontWeight="600" color="brand.black">
@@ -225,8 +232,8 @@ export const Main = React.memo(() => {
         w="full"
         layerStyle="brand-gradient-dark-blue"
         align="center"
-        spacing={IsLargerThan320 ? '80px' : '10px'}
-        paddingY={['60px', '35px', '30px', '50px', '55px']}
+        spacing={IsLargerThan320 ? '80px' : '40px'}
+        paddingY="70px"
         justify="flex-start"
         zIndex={2}
       >
@@ -552,6 +559,8 @@ export const Main = React.memo(() => {
             fontWeight="400"
             paddingX="40px"
             paddingY="15px"
+            w={IsLargerThan620 ? '320px' : '256px'}
+            h="57px"
             leftIcon={<BsFillTelephoneFill size="20px" />}
           >
             Узнать подробности
@@ -1058,7 +1067,15 @@ export const Main = React.memo(() => {
                     ></Field>
                   </VStack>
                   <VStack align="center">
-                    <Button type="submit" variant="brand-blue" paddingX="40px" paddingY="15px">
+                    <Button
+                      type="submit"
+                      variant="brand-blue"
+                      h="57px"
+                      w="250"
+                      paddingX="40px"
+                      paddingY="15px"
+                      fontWeight="400"
+                    >
                       Оставить заявку
                     </Button>
                   </VStack>
