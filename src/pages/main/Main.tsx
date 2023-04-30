@@ -11,6 +11,7 @@ import {
   Textarea,
   useMediaQuery,
 } from '@chakra-ui/react';
+import { SkipNavLink, SkipNavContent } from '@chakra-ui/skip-nav';
 import React, { useCallback, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
